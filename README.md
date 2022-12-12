@@ -1,5 +1,5 @@
 # rContact: Веб приложение для управления контактами. Из основных возможностей создание, редактирование, удаление и фильтрация контактов.
-## Check site https://r-contact.vercel.app/
+
 ## Features
 - Авторизация
 - Регистрация
@@ -27,3 +27,4 @@ git clone https://github.com/Donybro/rContact.git
 npm i
 npm run run-dev
 ```
+## https://r-contact.vercel.app/  Сайт будет работать только после локальной установки и запуска проекта
