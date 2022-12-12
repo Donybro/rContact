@@ -1,6 +1,29 @@
 {
   "contacts": [
-    
+    {
+      "tags": [
+        {
+          "id": 1,
+          "label": "Семья"
+        }
+      ],
+      "email": "tes122t@mail.com",
+      "phone": "998903177431",
+      "full_name": "Abdumannon",
+      "id": 1
+    },
+    {
+      "tags": [
+        {
+          "id": 3,
+          "label": "Друзья"
+        }
+      ],
+      "email": "dony1bro@gmail.com",
+      "phone": "998903177431",
+      "full_name": "Doniyor",
+      "id": 2
+    }
   ],
   "tags": [
     {
