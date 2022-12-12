@@ -17,17 +17,15 @@ const Home: FC = () => {
         </Link>
       </div>
       <div className={"flex justify-end mb-[12px]"}>
-        {!!contactsList.length && (
-          <input
-            placeholder={"Поиск..."}
-            onChange={debounce(
-              (e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value),
-              300
-            )}
-            type="text"
-            className={"base_input"}
-          />
-        )}
+        <input
+          placeholder={"Поиск..."}
+          onChange={debounce(
+            (e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value),
+            300
+          )}
+          type="text"
+          className={"base_input"}
+        />
       </div>
       <div className={"w-full h-[200px]"}>
         {contactsList.length ? (
