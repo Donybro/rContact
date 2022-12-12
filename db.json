@@ -1,0 +1,57 @@
+{
+  "contacts": [
+    {
+      "id": 2,
+      "full_name": "user 2",
+      "phone": "1234556789",
+      "email": "test2@email.com",
+      "tags": [
+        {
+          "id": 1,
+          "label": "Семья"
+        }
+      ]
+    },
+    {
+      "full_name": "3 User user",
+      "phone": "12331231231",
+      "email": "tes22t@mail.com",
+      "id": 3,
+      "tags": [
+        {
+          "id": 1,
+          "label": "Семья"
+        },
+        {
+          "id": 2,
+          "label": "Работа"
+        },
+        {
+          "id": 3,
+          "label": "Друзья"
+        }
+      ]
+    },
+    {
+      "full_name": "4ths user",
+      "phone": "0000",
+      "email": "tes22t@mail.com",
+      "tags": [],
+      "id": 4
+    }
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "label": "Семья"
+    },
+    {
+      "id": 2,
+      "label": "Работа"
+    },
+    {
+      "id": 3,
+      "label": "Friends"
+    }
+  ]
+}

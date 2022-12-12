@@ -1,0 +1,9 @@
+.wrapper {
+  @apply p-[25px] shadow rounded-md w-[400px] flex flex-col gap-[12px]
+}
+.filed{
+  @apply flex items-center justify-between
+}
+.tags{
+  @apply flex items-center gap-[6px]
+}

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .button{
+       @apply px-[12px] py-[6px] rounded-md text-white bg-purple-700
+    }
+    .page-title{
+        @apply text-3xl font-semibold
+    }
+    .base_input{
+        @apply box-border bg-white placeholder:text-[#c5c5c5] py-[5px] px-[10px] text-base rounded-md border border-[#c5c5c5] focus:outline focus:outline-offset-[2px] focus:outline-[2px] focus:outline-[#1b80ce];
+    }
+    .error_message{
+        @apply text-red-400 min-h-[20px] h-auto;
+    }
+
+}
