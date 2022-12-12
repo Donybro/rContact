@@ -7,8 +7,7 @@
     "run-dev": "concurrently --kill-others \"npm run dev\" \"npm run run-server\"",
     "run-server": "json-server-auth db.json",
     "build": "next build",
-    "start-next": "next start -p 8080",
-    "start": "concurrently --kill-others \"npm run start-next\" \"npm run run-server\"",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
