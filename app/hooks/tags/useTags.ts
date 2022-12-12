@@ -1,4 +1,4 @@
-import { TagsService } from "../services/tags/tags.service";
+import { TagsService } from "../../services/tags/tags.service";
 import { useQuery } from "react-query";
 
 export default function useTags() {

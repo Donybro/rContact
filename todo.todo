@@ -1,6 +1,7 @@
 [@] add filter
-[] add auth
-[] add rtk-Query
-[] Contact form phone mask
-[] Contact form phone validation
-[] add react toastr
+[@] add rtk-Query
+[@] add auth,register , protect routes
+[@] add react toastification
+[@] add auth,register error handling
+[@] Contact form phone mask
+[@] Contact form phone validation

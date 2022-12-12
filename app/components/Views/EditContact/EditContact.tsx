@@ -3,7 +3,9 @@ import ContactForm from "../../Contact/ContactForm/ContactForm";
 import { IContact } from "../../../types/contact.interface";
 import { ContactService } from "../../../services/contact/contact.service";
 import { useRouter } from "next/router";
-import useContactInfo from "../../../hooks/useContactInfo";
+import useContactInfo from "../../../hooks/contact/useContactInfo";
+import { useMutation } from "react-query";
+import { toast } from "react-toastify";
 
 const EditContact: FC = () => {
   const { edit } = ContactService;
@@ -12,17 +14,31 @@ const EditContact: FC = () => {
   const goBack = () => {
     router.back();
   };
-  const submitHandler = async (formData: IContact) => {
-    try {
-      const { status } = await edit(formData, +contact_id);
-      if (status >= 200 && status < 300) {
+
+  const { isLoading, mutate } = useMutation(
+    ["edit-contact"],
+    (formData: IContact) => ContactService.edit(formData, +contact_id),
+    {
+      onSuccess: () => {
         goBack();
-      }
-    } catch (e) {}
+        toast("Контакт успешно изменен!", {
+          type: "success",
+        });
+      },
+      onError: () => {
+        toast("Ошибка при изменении контакта!", {
+          type: "error",
+        });
+      },
+    }
+  );
+
+  const submitHandler = async (formData: IContact) => {
+    await mutate(formData);
   };
 
   const { contactInfo } = useContactInfo(+contact_id);
-  console.log(contactInfo, "contactInfo");
+
   return (
     contactInfo && (
       <section className={"px-[150px] py-[250px]"}>

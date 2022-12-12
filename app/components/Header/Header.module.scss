@@ -1,0 +1,6 @@
+.wrapper{
+  @apply flex items-center justify-end bg-sky-500 w-full shadow-md py-[12px] px-[14px] gap-[12px]
+}
+.email {
+  @apply font-semibold text-white
+}

@@ -1,4 +1,4 @@
 export interface IAuth {
-  login: String;
+  email: String;
   password: String;
 }

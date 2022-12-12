@@ -1,4 +1,6 @@
 .wrapper{
-  @apply flex items-center justify-center bg-white h-screen
+  @apply h-screen flex flex-col items-center
 }
-
+.main{
+  @apply bg-white h-full flex flex-col items-center justify-center
+}

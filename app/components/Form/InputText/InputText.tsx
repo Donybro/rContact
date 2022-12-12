@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { UseFormRegister } from "react-hook-form";
-import styles from "./InputText.module.scss";
 
 interface Props {
   name: string;
@@ -14,10 +13,10 @@ interface Props {
 const InputText: FC<Props> = (props) => {
   const { id, name, label, register, error, placeholder } = props;
   return (
-    <div className={styles.fieldWrapper}>
+    <div className={"flex flex-col gap-[12px]"}>
       <label htmlFor={id}>{label}</label>
       <input
-        className={styles.input}
+        className={"base_input"}
         placeholder={placeholder}
         id={id}
         {...register(name)}

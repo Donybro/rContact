@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { me } from "./user.actions";
+import { IAuth } from "../auth/auth.slice";
 
 export interface IUserState {
   isLoading?: Boolean;
@@ -7,33 +8,38 @@ export interface IUserState {
   user: IUser;
 }
 export interface IUser {
-  full_name_position: String;
-  position: String;
-  region: String;
-  username: String;
+  id?: "";
+  email: string;
+  password: string;
 }
 const initialState: IUserState = {
   isLoading: false,
   error: "",
   user: {
-    full_name_position: "",
-    position: "",
-    region: "",
-    username: "",
+    id: "",
+    email: "",
+    password: "",
   },
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    clearUserState: (state: IUserState) => {
+      state.user.id = "";
+      state.user.email = "";
+      state.user.password = "";
+    },
+  },
   extraReducers: {
     [me.pending.type]: (state: IUserState) => {
       state.isLoading = true;
     },
     [me.fulfilled.type]: (state: IUserState, action: PayloadAction<IUser>) => {
       state.isLoading = false;
-      state.user = action.payload;
+      state.user.email = action.payload.email;
+      state.user.id = action.payload.id;
     },
     [me.rejected.type]: (state: IUserState, action: PayloadAction<String>) => {
       state.isLoading = false;
@@ -41,6 +47,6 @@ export const userSlice = createSlice({
     },
   },
 });
-export const {} = userSlice.actions;
+export const { clearUserState } = userSlice.actions;
 
 export default userSlice.reducer;

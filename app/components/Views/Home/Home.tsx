@@ -1,8 +1,8 @@
 import { ChangeEvent, FC, useState } from "react";
 import Link from "next/link";
-import useSearchContact from "../../../hooks/useSearchContact";
-import debounce from "lodash.debounce";
+import useSearchContact from "../../../hooks/contact/useSearchContact";
 import ContactList from "../../Contact/ContactList/ContactList";
+import debounce from "lodash.debounce";
 
 const Home: FC = () => {
   const [search, setSearch] = useState("");
@@ -17,15 +17,17 @@ const Home: FC = () => {
         </Link>
       </div>
       <div className={"flex justify-end mb-[12px]"}>
-        <input
-          placeholder={"Поиск..."}
-          onChange={debounce(
-            (e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value),
-            300
-          )}
-          type="text"
-          className={"base_input"}
-        />
+        {!!contactsList.length && (
+          <input
+            placeholder={"Поиск..."}
+            onChange={debounce(
+              (e: ChangeEvent<HTMLInputElement>) => setSearch(e.target.value),
+              300
+            )}
+            type="text"
+            className={"base_input"}
+          />
+        )}
       </div>
       <div className={"w-full h-[200px]"}>
         {contactsList.length ? (
@@ -35,6 +37,9 @@ const Home: FC = () => {
         ) : error ? (
           <div>Ошибка загрузки данныйх</div>
         ) : null}
+        {!contactsList.length && (
+          <div className={"font-semibold text-[20px]"}>Список пуст</div>
+        )}
       </div>
     </div>
   );

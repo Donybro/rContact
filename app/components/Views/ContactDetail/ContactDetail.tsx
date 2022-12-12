@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { useRouter } from "next/router";
-import useContactInfo from "../../../hooks/useContactInfo";
+import useContactInfo from "../../../hooks/contact/useContactInfo";
 import MainLayout from "../../../layouts/MainLayout/MainLayout";
 import Link from "next/link";
 import ContactCard from "../../Contact/ContactCard/ContactCard";

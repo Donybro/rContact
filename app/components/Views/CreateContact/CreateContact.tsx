@@ -3,21 +3,36 @@ import ContactForm from "../../Contact/ContactForm/ContactForm";
 import { IContact } from "../../../types/contact.interface";
 import { ContactService } from "../../../services/contact/contact.service";
 import { useRouter } from "next/router";
-
+import { AxiosResponse } from "axios";
+import { useMutation } from "react-query";
+import { toast } from "react-toastify";
 const CreateContact: FC = () => {
-  const { create } = ContactService;
   const router = useRouter();
 
   const goBack = () => {
     router.back();
   };
-  const submitHandler = async (formData: IContact) => {
-    try {
-      const { status } = await create(formData);
-      if (status >= 200 && status < 300) {
+
+  const { isLoading, mutate } = useMutation(
+    ["create-contact"],
+    (formData: IContact) => ContactService.create(formData),
+    {
+      onSuccess: () => {
+        toast("Контакт успешно создан!", {
+          type: "success",
+        });
         goBack();
-      }
-    } catch (e) {}
+      },
+      onError: () => {
+        toast("Ошибка при создании контакта!", {
+          type: "error",
+        });
+      },
+    }
+  );
+
+  const submitHandler = async (formData: IContact) => {
+    await mutate(formData);
   };
 
   return (
@@ -29,6 +44,7 @@ const CreateContact: FC = () => {
         </button>
       </div>
       <ContactForm submitHandler={submitHandler} />
+      {isLoading && <div>Создается контакт</div>}
     </section>
   );
 };

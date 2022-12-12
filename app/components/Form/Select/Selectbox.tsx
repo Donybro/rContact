@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Controller } from "react-hook-form";
-import styles from "./Selectbox.module.scss";
 import Select from "react-select";
 
 interface Props {
@@ -29,7 +28,7 @@ const Selectbox: FC<Props> = ({
   showBy,
 }) => {
   return (
-    <div className={styles.fieldWrapper}>
+    <div className={"flex flex-col gap-[12px]"}>
       <label htmlFor={id}>{label}</label>
       <Controller
         name={name}

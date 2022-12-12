@@ -1,68 +1,72 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./Auth.module.scss";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { IAuth } from "./auth.interface";
-import classNames from "classnames";
-import { useAction } from "../../../hooks/useAction";
-import { useTypedSelector } from "../../../hooks/useTypedSelector";
-import { useRouter } from "next/router";
+import Link from "next/link";
+import {
+  emailValidatorMessage,
+  requiredValidatorMessage,
+} from "../../../utils/validationMessages";
+import InputText from "../../Form/InputText/InputText";
 
-const AuthForm: FC = () => {
-  const schema = yup
-    .object({
-      login: yup.string().required("is required"),
-      password: yup.string().required("is required").min(6, "error min"),
-    })
-    .required();
+interface Props {
+  isRegistrationForm?: boolean;
+  submitHandler: (data: IAuth) => {};
+}
+
+const AuthForm: FC<Props> = ({ submitHandler, isRegistrationForm }) => {
+  const schema = yup.object({
+    email: yup
+      .string()
+      .email(emailValidatorMessage)
+      .required(requiredValidatorMessage),
+    password: yup.string().required(requiredValidatorMessage),
+  });
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IAuth>({
     resolver: yupResolver(schema),
   });
-
-  const { isAuthorized } = useTypedSelector((state) => state.auth);
-  const { auth } = useAction();
-
-  const router = useRouter();
-
   const onSubmit = async (data: IAuth) => {
-    await auth(data);
+    submitHandler(data);
   };
-
-  useEffect(() => {
-    if (isAuthorized) {
-      router.push("/");
-    }
-  }, [isAuthorized]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-col gap-[12px]">
-        <input
-          placeholder="Login"
-          className={styles.login}
-          id="login"
-          {...register("login")}
-        />
-        <div>{errors?.login && <div>{errors.login.message}</div>}</div>
-      </div>
-      <div className="flex flex-col gap-[12px]">
-        <input
-          placeholder="Parol"
-          className={styles.login}
-          type="password"
-          id="password"
-          {...register("password")}
-        />
-        <div>{errors?.password && <div>{errors.password.message}</div>}</div>
-      </div>
-      <button className={classNames(styles.button)} type="submit">
-        Kirish
+      <InputText
+        placeholder={"Email"}
+        name={"email"}
+        id={"email"}
+        error={errors?.email?.message || ""}
+        register={register}
+      />
+      <InputText
+        placeholder={"Пароль"}
+        name={"password"}
+        id={"password"}
+        error={errors?.password?.message || ""}
+        register={register}
+      />
+      {!isRegistrationForm && (
+        <Link className={"text-gray-500 text-dashed"} href={"/auth/register"}>
+          Регистрация
+        </Link>
+      )}
+      {isRegistrationForm && (
+        <Link className={"text-gray-500"} href={"/auth"}>
+          Войти
+        </Link>
+      )}
+      <Link className={"text-blue-600"} href={"/"}>
+        Войти как гость
+      </Link>
+      <button className={"button"} type="submit">
+        {isRegistrationForm ? "Регистрация" : "Вход"}
       </button>
     </form>
   );

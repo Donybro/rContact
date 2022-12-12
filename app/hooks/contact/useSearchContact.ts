@@ -1,4 +1,4 @@
-import { ContactService } from "../services/contact/contact.service";
+import { ContactService } from "../../services/contact/contact.service";
 import { useQuery } from "react-query";
 
 export default function useSearchContact(q: string) {

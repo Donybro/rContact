@@ -3,10 +3,13 @@ import { IAuth } from "../../components/Views/Auth/auth.interface";
 
 export const AuthService = {
   async auth(data: IAuth) {
-    return await api.post("/auth/login/", data);
+    return await api.post("/login", data);
   },
-  async me() {
-    return await api.get("/auth/me");
+  async register(data: IAuth) {
+    return await api.post("/register", data);
+  },
+  async me(id: string) {
+    return await api.get(`/600/users/${id}`);
   },
   async logout() {
     return await api.get("/auth/logout");
