@@ -1,6 +1,5 @@
-import { FC, PropsWithChildren, useEffect } from "react";
+import { FC, PropsWithChildren, useLayoutEffect } from "react";
 import Cookies from "js-cookie";
-import { useAction } from "../hooks/useAction";
 import { useRouter } from "next/router";
 import { useTypedSelector } from "../hooks/useTypedSelector";
 import { toast } from "react-toastify";
@@ -10,7 +9,7 @@ const AuthProtectedLayout: FC<PropsWithChildren> = ({ children }) => {
   const { isAuthorized } = useTypedSelector((state) => state.auth);
   const router = useRouter();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!userId && !isAuthorized) {
       router.push("/auth");
       toast("Для дальнейшей работы необходима авторизация !", {

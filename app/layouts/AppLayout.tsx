@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useEffect, useState } from "react";
+import { FC, PropsWithChildren, useLayoutEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { useAction } from "../hooks/useAction";
 
@@ -8,7 +8,7 @@ const AppLayout: FC<PropsWithChildren> = ({ children }) => {
 
   const { me } = useAction();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (userId) {
       setIsLoading(true);
       me(userId);
